@@ -1,0 +1,16 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "blusbeasts:item/chimera_core_base"
+  },
+  "overrides": [
+    { "predicate": {"layer":1}, "model": "blusbeasts:item/chimera_core_fox" },
+    { "predicate": {"layer":1}, "model": "blusbeasts:item/chimera_core_chicken" },
+    { "predicate": {"layer":1}, "model": "blusbeasts:item/chimera_core_goat" },
+    { "predicate": {"layer":1}, "model": "blusbeasts:item/chimera_core_guardian" },
+    { "predicate": {"layer":1}, "model": "blusbeasts:item/chimera_core_phantom" },
+    { "predicate": {"layer":1}, "model": "blusbeasts:item/chimera_core_rabbit" },
+    { "predicate": {"layer":1}, "model": "blusbeasts:item/chimera_core_hoglin" }
+  ],
+  "custom_renderer": true
+}

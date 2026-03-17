@@ -1,0 +1,165 @@
+{
+  "leach":{
+    "subtitle": "sound.blusbeasts.leach",
+    "sounds": [
+      "blusbeasts:leach"
+    ]
+  },
+  "packwing":{
+    "subtitle": "sound.blusbeasts.packwing",
+    "sounds": [
+      "blusbeasts:packwing/packwing"
+    ]
+  },
+  "packwing_death":{
+    "subtitle": "sound.blusbeasts.packwing_death",
+    "sounds": [
+      "blusbeasts:packwing/packwing_death"
+    ]
+  },
+  "packwing_hurt":{
+    "subtitle": "sound.blusbeasts.packwing_hurt",
+    "sounds": [
+      "blusbeasts:packwing/packwing_hurt"
+    ]
+  },
+  "salamander":{
+    "subtitle": "sound.blusbeasts.salamander",
+    "sounds": [
+      "blusbeasts:salamander/salamander_grunt"
+    ]
+  },
+  "salamander_death":{
+    "subtitle": "sound.blusbeasts.salamander_death",
+    "sounds": [
+      "blusbeasts:salamander/salamander_death"
+    ]
+  },
+  "salamander_hurt":{
+    "subtitle": "sound.blusbeasts.salamander_hurt",
+    "sounds": [
+      "blusbeasts:salamander/salamander_hurt"
+    ]
+  },
+  "salamander_burn":{
+    "subtitle": "sound.blusbeasts.salamander_burn",
+    "sounds": [
+      "blusbeasts:salamander/burn/salamander_burn1",
+      "blusbeasts:salamander/burn/salamander_burn2",
+      "blusbeasts:salamander/burn/salamander_burn3",
+      "blusbeasts:salamander/burn/salamander_burn4",
+      "blusbeasts:salamander/burn/salamander_burn5",
+      "blusbeasts:salamander/burn/salamander_burn6",
+      "blusbeasts:salamander/burn/salamander_burn7",
+      "blusbeasts:salamander/burn/salamander_burn8"
+    ]
+  },
+  "salamander_burn_start":{
+    "subtitle": "sound.blusbeasts.salamander_burn_start",
+    "sounds": [
+      "blusbeasts:salamander/burn/salamander_burn_start"
+    ]
+  },
+  "salamander_burn_end":{
+    "subtitle": "sound.blusbeasts.salamander_burn_end",
+    "sounds": [
+      "blusbeasts:salamander/burn/salamander_burn_end"
+    ]
+  },
+  "the_axolotl_song":{
+    "subtitle": "sound.blusbeasts.the_axolotl_song",
+    "sounds": [
+      "blusbeasts:salamander/the_axolotl_song"
+    ]
+  },
+  "moon_squid":{
+    "subtitle": "sound.blusbeasts.moon_squid",
+    "sounds": [
+      "blusbeasts:moon_squid/squid"
+    ]
+  },
+  "moon_squid_death":{
+    "subtitle": "sound.blusbeasts.moon_squid_death",
+    "sounds": [
+      "blusbeasts:moon_squid/squid_death"
+    ]
+  },
+  "moon_squid_hurt":{
+    "subtitle": "sound.blusbeasts.moon_squid_hurt",
+    "sounds": [
+      "blusbeasts:moon_squid/squid_hurt"
+    ]
+  },
+  "toad_croak":{
+    "subtitle": "sound.blusbeasts.toad_croak",
+    "sounds": [
+      "blusbeasts:mycelium_toad/toad_croak"
+    ]
+  },
+  "toad_death":{
+    "subtitle": "sound.blusbeasts.toad_death",
+    "sounds": [
+      "blusbeasts:mycelium_toad/toad_death"
+    ]
+  },
+  "toad_fart":{
+    "subtitle": "sound.blusbeasts.toad_fart",
+    "sounds": [
+      "blusbeasts:mycelium_toad/toad_fart"
+    ]
+  },
+  "toad_hurt":{
+    "subtitle": "sound.blusbeasts.toad_hurt",
+    "sounds": [
+      "blusbeasts:mycelium_toad/toad_hurt"
+    ]
+  },
+  "toad_sleep":{
+    "subtitle": "sound.blusbeasts.toad_sleep",
+    "sounds": [
+      "blusbeasts:mycelium_toad/toad_sleeping_croak"
+    ]
+  },
+  "toad_swallow":{
+    "subtitle": "sound.blusbeasts.toad_swallow",
+    "sounds": [
+      "blusbeasts:mycelium_toad/toad_swallow"
+    ]
+  },
+  "prayfinder_call":{
+    "subtitle": "sound.blusbeasts.prayfinder_call",
+    "sounds": [
+      "blusbeasts:prayfinder/prayfinder_call"
+    ]
+  },
+  "prayfinder_chirp":{
+    "subtitle": "sound.blusbeasts.prayfinder_chirp",
+    "sounds": [
+      "blusbeasts:prayfinder/prayfinder_chirp"
+    ]
+  },
+  "prayfinder_death":{
+    "subtitle": "sound.blusbeasts.prayfinder_death",
+    "sounds": [
+      "blusbeasts:prayfinder/prayfinder_death"
+    ]
+  },
+  "prayfinder_hurt":{
+    "subtitle": "sound.blusbeasts.prayfinder_hurt",
+    "sounds": [
+      "blusbeasts:prayfinder/prayfinder_hurt"
+    ]
+  },
+  "mimicart_lick":{
+    "subtitle": "sound.blusbeasts.mimicart_lick",
+    "sounds": [
+      "blusbeasts:mimicart/mimicart_lick"
+    ]
+  },
+  "mimicart_snap":{
+    "subtitle": "sound.blusbeasts.mimicart_snap",
+    "sounds": [
+      "blusbeasts:mimicart/mimicart_snap"
+    ]
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "blusbeasts:block/end_wyvern_nest"
+      },
+      {
+        "model": "blusbeasts:block/end_wyvern_nest",
+        "x": 90
+      },
+      {
+        "model": "blusbeasts:block/end_wyvern_nest",
+        "x": 180
+      },
+      {
+        "model": "blusbeasts:block/end_wyvern_nest",
+        "x": 270
+      },
+      {
+        "model": "blusbeasts:block/end_wyvern_nest",
+        "y": 90
+      },
+      {
+        "model": "blusbeasts:block/end_wyvern_nest",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "blusbeasts:block/end_wyvern_nest",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "blusbeasts:block/end_wyvern_nest",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "blusbeasts:block/end_wyvern_nest",
+        "y": 180
+      },
+      {
+        "model": "blusbeasts:block/end_wyvern_nest",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "blusbeasts:block/end_wyvern_nest",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "blusbeasts:block/end_wyvern_nest",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "blusbeasts:block/end_wyvern_nest",
+        "y": 270
+      },
+      {
+        "model": "blusbeasts:block/end_wyvern_nest",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "blusbeasts:block/end_wyvern_nest",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "blusbeasts:block/end_wyvern_nest",
+        "x": 270,
+        "y": 270
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/sniffer_egg",
+  "textures": {
+    "bottom": "blusbeasts:block/end_wyvern_egg_very_cracked_bottom",
+    "east": "blusbeasts:block/end_wyvern_egg_very_cracked_east",
+    "north": "blusbeasts:block/end_wyvern_egg_very_cracked_north",
+    "south": "blusbeasts:block/end_wyvern_egg_very_cracked_south",
+    "top": "blusbeasts:block/end_wyvern_egg_very_cracked_top",
+    "west": "blusbeasts:block/end_wyvern_egg_very_cracked_west"
+  }
+}

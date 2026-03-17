@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "net.blumasc.blusbeasts.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "CatalystListenerMixin",
+    "GoldenAntlersTemptGoalMixin",
+    "ItemEntityMixin",
+    "BuddingAmethystMixin"
+  ],
+  "client": [
+  ],
+  "server": []
+}
