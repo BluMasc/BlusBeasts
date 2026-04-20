@@ -53,6 +53,7 @@ public class ModTags {
         public static final TagKey<EntityType<?>> PRAYFINDER_FRIENDS = createTag("prayfinder_friends");
         public static final TagKey<EntityType<?>> IGNORES_PHEROMONES = createTag("ignores_pheromones");
         public static final TagKey<EntityType<?>> INFESTATION_MOBS = createTag("infestation_mobs");
+        public static final TagKey<EntityType<?>> LIGHTNING_TARGETS = createTag("lightning_targets");
         private static TagKey<EntityType<?>> createTag(String name){
             return TagKey.create(
                     Registries.ENTITY_TYPE,

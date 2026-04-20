@@ -20,6 +20,18 @@ public class Config {
             .comment("Should Salamanders be able to smelt entire stacks?")
             .define("salamanderStackSmelt", true);
 
+    public static final ModConfigSpec.BooleanValue SPAWN_AMETHYST_CRAB = BUILDER
+            .comment("Should Amethyst Crabs spawn from growing amethyst buds?")
+            .define("spawnamethystcrab", true);
+
+    public static final ModConfigSpec.BooleanValue SPAWN_ROOTLING = BUILDER
+            .comment("Should Rootlings spawn from despawning plant items?")
+            .define("spawnrootling", true);
+
+    public static final ModConfigSpec.ConfigValue<Integer> PRAYFINDER_DAY_REQUIREMENT = BUILDER
+            .comment("After what number of days should prayfinders spawn?")
+            .define("prayfinderdayrequirement", 10);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 
 }

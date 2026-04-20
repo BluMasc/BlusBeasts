@@ -1,5 +1,6 @@
 package net.blumasc.blusbeasts.mixin;
 
+import net.blumasc.blusbeasts.Config;
 import net.blumasc.blusbeasts.entity.ModEntities;
 import net.blumasc.blusbeasts.entity.custom.AmthystCrabEntity;
 import net.minecraft.core.BlockPos;
@@ -26,6 +27,7 @@ public class BuddingAmethystMixin {
             cancellable = true
     )
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random, CallbackInfo ci) {
+        if(!Config.SPAWN_AMETHYST_CRAB.get()) return;
         if (random.nextInt(30) == 0) {
             Direction direction = DIRECTIONS[random.nextInt(DIRECTIONS.length)];
             BlockPos blockpos = pos.relative(direction);

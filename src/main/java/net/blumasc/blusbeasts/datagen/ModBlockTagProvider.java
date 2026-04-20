@@ -6,7 +6,10 @@ import net.blumasc.blusbeasts.block.ModBlocks;
 import net.blumasc.blusbeasts.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -117,5 +120,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.WOOL_CARPETS)
                 .add(ModBlocks.RAINBOW_CARPET.get());
+
+        tag(BlockTags.WALL_POST_OVERRIDE)
+                .add(ModBlocks.PIXIE_TORCH_BLOCK.get())
+                .add(ModBlocks.WALL_PIXIE_TORCH.get());
+
+        tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("c","sandstone/blocks")))
+                .add(ModBlocks.GRAVE_SANDSTONE.get())
+                .add(ModBlocks.GRAVE_RED_SANDSTONE.get());
     }
 }

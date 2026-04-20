@@ -2,6 +2,7 @@ package net.blumasc.blusbeasts.entity.custom;
 
 import net.blumasc.blubasics.item.BaseModItems;
 import net.blumasc.blusbeasts.item.ModItems;
+import net.blumasc.blusbeasts.sound.ModSounds;
 import net.blumasc.blusbeasts.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -12,6 +13,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.AnimationState;
@@ -27,6 +29,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
 
 public class RootlingEntity extends PathfinderMob {
 
@@ -80,6 +83,16 @@ public class RootlingEntity extends PathfinderMob {
         this.goalSelector.addGoal(2, new RootlingRandomStrollGoal(this, 0.8));
         this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8f));
         this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+    }
+
+    @Override
+    protected @Nullable SoundEvent getAmbientSound() {
+        return ModSounds.ROOTLING_AMBIENT.get();
+    }
+
+    @Override
+    protected @Nullable SoundEvent getDeathSound() {
+        return ModSounds.ROOTLING_DEATH.get();
     }
 
     @Override

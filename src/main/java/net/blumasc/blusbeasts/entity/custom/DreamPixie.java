@@ -4,18 +4,22 @@ import net.blumasc.blusbeasts.block.custom.blockentity.custom.PlateBlockEntity;
 import net.blumasc.blusbeasts.datagen.ModLootTables;
 import net.blumasc.blusbeasts.item.ModItems;
 import net.blumasc.blusbeasts.particle.ModParticles;
+import net.blumasc.blusbeasts.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceKey;import net.minecraft.server.level.ServerLevel;import net.minecraft.sounds.SoundEvents;import net.minecraft.sounds.SoundSource;import net.minecraft.world.entity.*;
+import net.minecraft.resources.ResourceKey;import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;import net.minecraft.sounds.SoundSource;import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.FlyingAnimal;
 import net.minecraft.world.entity.item.ItemEntity;import net.minecraft.world.entity.player.Player;import net.minecraft.world.item.ItemStack;import net.minecraft.world.level.Level;import net.minecraft.world.level.storage.loot.BuiltInLootTables;import net.minecraft.world.level.storage.loot.LootParams;import net.minecraft.world.level.storage.loot.LootTable;import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.injection.struct.InjectionPointAnnotationContext;import java.util.EnumSet;import java.util.List;import java.util.Optional;
 
 public class DreamPixie extends PathfinderMob implements FlyingAnimal {
@@ -52,6 +56,11 @@ public class DreamPixie extends PathfinderMob implements FlyingAnimal {
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new PanicAndDisappearGoal(this, 8.0));
         this.goalSelector.addGoal(2, new FlyToPlateGoal(this));
+    }
+
+    @Override
+    protected @Nullable SoundEvent getAmbientSound() {
+        return ModSounds.PIXIE.get();
     }
 
     @Override

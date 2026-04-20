@@ -1,6 +1,7 @@
 package net.blumasc.blusbeasts.events;
 
 import net.blumasc.blusbeasts.BlusBeastsMod;
+import net.blumasc.blusbeasts.Config;
 import net.blumasc.blusbeasts.damage.ModDamageTypes;
 import net.blumasc.blusbeasts.effect.ModEffects;
 import net.blumasc.blusbeasts.entity.ModEntities;
@@ -91,7 +92,7 @@ public class ServerEvents {
         if (level.getBrightness(LightLayer.SKY, pos) <= 5) return;
         long totalDays = level.getDayTime() / 24000L;
         float chance = 0.0f;
-        if(totalDays > 10) {
+        if(totalDays > Config.PRAYFINDER_DAY_REQUIREMENT.get()) {
             chance = 0.01f * (totalDays - 10);
             if(chance > 0.22f) chance = 0.22f;
         }
@@ -157,6 +158,7 @@ public class ServerEvents {
 
     @SubscribeEvent
     public static void plantDespawnEvent(ItemExpireEvent e){
+        if(!Config.SPAWN_ROOTLING.get()) return;
         if(e.getEntity().level().isClientSide()) return;
         ItemEntity itemEntity = e.getEntity();
         if(itemEntity.getItem().getItem() instanceof BlockItem bi){

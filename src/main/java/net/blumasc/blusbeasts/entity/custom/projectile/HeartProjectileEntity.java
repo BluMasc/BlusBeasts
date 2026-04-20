@@ -2,13 +2,14 @@ package net.blumasc.blusbeasts.entity.custom.projectile;
 
 import net.blumasc.blubasics.block.BaseModBlocks;
 import net.blumasc.blubasics.block.entity.VoidBlockEntity;
-import net.blumasc.blubasics.effect.EffectsHelper;
 import net.blumasc.blusbeasts.particle.ModParticles;
+import net.blumasc.blusbeasts.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AreaEffectCloud;
@@ -74,6 +75,7 @@ public class HeartProjectileEntity extends AbstractHurtingProjectile {
         c.setOwner(this.getLivingOwner());
         c.setDuration(100);
         c.addEffect(new MobEffectInstance(MobEffects.HEAL));
+        level().playSound(null, getX(), getY(), getZ(), ModSounds.HEART_EXPLOSION.get(), SoundSource.PLAYERS, 1.0f, 0.8f+getRandom().nextFloat()*0.4f);
         this.level().addFreshEntity(c);
         this.discard();
     }
@@ -102,6 +104,7 @@ public class HeartProjectileEntity extends AbstractHurtingProjectile {
             c.addEffect(new MobEffectInstance(MobEffects.HEAL));
             this.level().addFreshEntity(c);
         }
+        level().playSound(null, getX(), getY(), getZ(), ModSounds.HEART_EXPLOSION.get(), SoundSource.PLAYERS, 1.0f, 0.8f+getRandom().nextFloat()*0.4f);
         this.discard();
     }
 

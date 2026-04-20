@@ -4,6 +4,7 @@ import net.blumasc.blusbeasts.block.ModBlocks;
 import net.blumasc.blusbeasts.playerstate.PlayerDragonState;
 import net.blumasc.blusbeasts.playerstate.PlayerDragonStateHandler;
 import net.blumasc.blusbeasts.recipe.ModRecipes;
+import net.blumasc.blusbeasts.sound.ModSounds;
 import net.blumasc.blusbeasts.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -12,6 +13,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -57,6 +59,21 @@ public class EndWyvernEntity extends Animal implements FlyingAnimal {
         super.defineSynchedData(builder);
         builder.define(HOME, BlockPos.ZERO);
         builder.define(HAS_EGG, false);
+    }
+
+    @Override
+    protected @Nullable SoundEvent getAmbientSound() {
+        return ModSounds.ENDERDRAKE_AMBIENT.get();
+    }
+
+    @Override
+    protected @Nullable SoundEvent getDeathSound() {
+        return ModSounds.ENDERDRAKE_DEATH.get();
+    }
+
+    @Override
+    protected @Nullable SoundEvent getHurtSound(DamageSource damageSource) {
+        return ModSounds.ENDERDRAKE_HURT.get();
     }
 
     public EndWyvernEntity(EntityType<? extends Animal> entityType, Level level) {
@@ -200,6 +217,9 @@ public class EndWyvernEntity extends Animal implements FlyingAnimal {
             super.tick();
 
             if (this.blockPos != null) {
+                if(tickCount%random.nextInt(20)+10==0){
+                    level().playSound(null, getX(), getY(), getZ(), ModSounds.ENDERDRAKE_WINGBEAT.get(), SoundSource.PLAYERS, 0.7f, 0.8f+random.nextFloat()*0.4f);
+                }
                 wyvern.getMoveControl().setWantedPosition(
                         blockPos.getX() + 0.5,
                         blockPos.getY() + 1,

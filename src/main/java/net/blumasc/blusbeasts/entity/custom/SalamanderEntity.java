@@ -34,6 +34,7 @@ import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -263,6 +264,7 @@ public class SalamanderEntity extends Animal {
         public RunToDroppedSmeltableGoal(SalamanderEntity lizard, double speed) {
             this.lizard = lizard;
             this.speed = speed;
+            this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
         }
 
         @Override
@@ -274,16 +276,31 @@ public class SalamanderEntity extends Animal {
                     e -> getSmeltingResult(e.getItem()) != null
             );
 
-            if (!items.isEmpty()) {
-                this.target = items.get(0);
-                return true;
+            ItemEntity closest = null;
+            double closestDist = Double.MAX_VALUE;
+
+            for (ItemEntity item : items) {
+                Path path = lizard.getNavigation().createPath(item, 1);
+                if (path != null && path.canReach()) {
+                    double dist = lizard.distanceToSqr(item);
+                    if (dist < closestDist) {
+                        closestDist = dist;
+                        closest = item;
+                    }
+                }
             }
-            return false;
+
+            this.target = closest;
+            return closest != null;
         }
 
         @Override
         public boolean canContinueToUse() {
-            return target != null && target.isAlive();
+            if (target == null || !target.isAlive()) return false;
+            if (getSmeltingResult(target.getItem()) == null) return false;
+            if (lizard.distanceToSqr(target) > 256.0) return false;
+            Path path = lizard.getNavigation().createPath(target, 1);
+            return path != null && path.canReach();
         }
 
         @Override
@@ -379,6 +396,7 @@ public class SalamanderEntity extends Animal {
         public ScratchBlockGoal(SalamanderEntity salamander, double speed) {
             this.salamander = salamander;
             this.speed = speed;
+            this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
         }
 
         @Override

@@ -3,8 +3,10 @@ package net.blumasc.blusbeasts.item.custom;
 import net.blumasc.blusbeasts.entity.ModEntities;
 import net.blumasc.blusbeasts.entity.custom.projectile.HeartProjectileEntity;
 import net.blumasc.blusbeasts.particle.ModParticles;
+import net.blumasc.blusbeasts.sound.ModSounds;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -50,7 +52,9 @@ public class MagicWandItem extends Item {
                         12, 0.3, 0.3, 0.3, 0.05
                 );
 
+                level.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.MAGIC_WAND_HEAL.get(), SoundSource.PLAYERS, 1.0f, 0.8f+player.getRandom().nextFloat()*0.4f);
                 stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+                player.getCooldowns().addCooldown(this, 20*20);
             }
         }
         return true;
@@ -77,7 +81,9 @@ public class MagicWandItem extends Item {
             );
 
             level.addFreshEntity(projectile);
+            level.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.MAGIC_WAND_HEAL.get(), SoundSource.PLAYERS, 1.0f, 0.8f+player.getRandom().nextFloat()*0.4f);
             stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+            player.getCooldowns().addCooldown(this, 10*20);
         }
 
         return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());

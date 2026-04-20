@@ -110,8 +110,43 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ItemTags.WOOL_CARPETS)
                 .add(ModBlocks.RAINBOW_CARPET.asItem());
 
+        tag(ItemTags.FISHES)
+                .add(ModItems.MINERS_SNACK.get())
+                .add(ModItems.COOKED_MINERS_SNACK.get());
+
+        tag(ItemTags.CAT_FOOD)
+                .add(ModItems.MINERS_SNACK.get());
+
+        tag(ItemTags.OCELOT_FOOD)
+                .add(ModItems.MINERS_SNACK.get());
+
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","animal_foods")))
+                .addTag(ModTags.Items.END_WYVERN_FOOD)
+                .addTag(ModTags.Items.TOAD_FOOD)
+                .addTag(ModTags.Items.PRAYFINDER_FOOD)
+                .addTag(ModTags.Items.SALAMANDER_FOOD);
+
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","foods")))
+                .add(ModItems.END_TAKOYAKI.get());
+
+        tag(ItemTags.SMALL_FLOWERS)
+                .add(ModBlocks.BLUEBELLS.asItem());
+
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","foods/raw_fish")))
+                .add(ModItems.MINERS_SNACK.get());
+
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","foods/cooked_fish")))
+                .add(ModItems.COOKED_MINERS_SNACK.get());
+
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","bones")))
+                .add(ModItems.FISH_BONE_SKEWER.get());
+
         tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","feathers")))
                 .add(ModItems.PRAYFINDER_FEATHER.get());
+
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","sandstone/blocks")))
+                .add(ModBlocks.GRAVE_SANDSTONE.asItem())
+                .add(ModBlocks.GRAVE_RED_SANDSTONE.asItem());
 
         tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c","concretes")))
                 .add(ModBlocks.RAINBOW_CONCRETE.asItem());

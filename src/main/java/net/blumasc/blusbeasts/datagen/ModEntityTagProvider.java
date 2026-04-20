@@ -29,6 +29,8 @@ public class ModEntityTagProvider extends EntityTypeTagsProvider {
         tag(ModTags.EntityTypes.IGNORES_PHEROMONES)
                 .add(ModEntities.PRAYFINDER.get())
                 .add(EntityType.WITHER);
+        tag(ModTags.EntityTypes.LIGHTNING_TARGETS)
+                .add(EntityType.PIG);
         tag(ModTags.EntityTypes.INFESTATION_MOBS)
                 .add(ModEntities.NETHER_LEACH.get())
                 .add(EntityType.SILVERFISH)

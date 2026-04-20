@@ -3,6 +3,7 @@ package net.blumasc.blusbeasts.block.custom.blockentity.custom;
 import net.blumasc.blusbeasts.block.custom.blockentity.ModBlockEntities;
 import net.blumasc.blusbeasts.entity.ModEntities;
 import net.blumasc.blusbeasts.entity.custom.DreamPixie;
+import net.blumasc.blusbeasts.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
@@ -11,6 +12,7 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
@@ -38,6 +40,7 @@ public class PlateBlockEntity extends BlockEntity {
     };
 
     public boolean genLoot = false;
+    private long lastSpawnDay = -1;
 
 
 
@@ -97,6 +100,8 @@ public class PlateBlockEntity extends BlockEntity {
     public void tick(Level level, BlockPos blockPos, BlockState blockState){
         if (level.isClientSide()) return;
         if (level.getGameTime() % 10 != 0) return;
+        long currentDay = level.getGameTime() / 24000L;
+        if (currentDay == lastSpawnDay) return;
         boolean hasFood = false;
         for (int i = 0; i < inventory.getSlots(); i++) {
             if (!inventory.getStackInSlot(i).isEmpty() && inventory.getStackInSlot(i).has(DataComponents.FOOD)) {
@@ -129,6 +134,8 @@ public class PlateBlockEntity extends BlockEntity {
         if (pixie != null) {
             pixie.moveTo(x, y, z, level.random.nextFloat() * 360, 0);
             level.addFreshEntity(pixie);
+            level.playSound(null, blockPos, ModSounds.SPARKLE_ALL.get(), SoundSource.PLAYERS, 0.7f, 0.8f+level.random.nextFloat()*0.4f);
+            lastSpawnDay = currentDay;
         }
     }
 

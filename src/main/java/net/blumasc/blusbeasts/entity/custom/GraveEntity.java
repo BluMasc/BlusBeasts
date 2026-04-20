@@ -2,8 +2,10 @@ package net.blumasc.blusbeasts.entity.custom;
 
 import net.blumasc.blubasics.entity.custom.projectile.MeteoriteEntity;
 import net.blumasc.blubasics.entity.custom.projectile.SpikeEntity;
+import net.blumasc.blubasics.sound.BaseModSounds;
 import net.blumasc.blusbeasts.entity.ModEntities;
 import net.blumasc.blusbeasts.entity.variants.BurryVariant;
+import net.blumasc.blusbeasts.sound.ModSounds;
 import net.blumasc.blusbeasts.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -12,6 +14,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
@@ -31,29 +35,28 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class GraveEntity extends Monster {
 
-    // ── Animation states ──────────────────────────────────────────────────────
     public final AnimationState idleAnimationState     = new AnimationState();
     public final AnimationState whirlingAnimationState = new AnimationState();
     public final AnimationState throwAnimationState    = new AnimationState();
     public final AnimationState hitAnimationState      = new AnimationState();
     public final AnimationState screamAnimationState   = new AnimationState();
 
-    // ── Synced data ───────────────────────────────────────────────────────────
     private static final EntityDataAccessor<Integer> VARIANT =
             SynchedEntityData.defineId(GraveEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> ATTACK_PHASE =
             SynchedEntityData.defineId(GraveEntity.class, EntityDataSerializers.INT);
 
-    // ── Attack state machine ──────────────────────────────────────────────────
     private enum AttackPhase { NONE, SPIKE, METEOR, SUMMON }
 
     private AttackPhase currentPhase   = AttackPhase.NONE;
-    private int         attackTick     = 0;      // ticks since phase started
+    private int         attackTick     = 0;
     private int         retargetTimer  = 0;
 
     private void setPhase(AttackPhase phase) {
@@ -61,18 +64,13 @@ public class GraveEntity extends Monster {
         this.entityData.set(ATTACK_PHASE, phase.ordinal());
     }
 
-    // Meteor held above head before throwing
     private MeteoriteEntity chargedMeteor = null;
 
-    // ── Boss bar ──────────────────────────────────────────────────────────────
     private final ServerBossEvent bossEvent = new ServerBossEvent(
             Component.translatable("entity.blusbeasts.grave"),
             BossEvent.BossBarColor.YELLOW,
             BossEvent.BossBarOverlay.NOTCHED_10);
 
-    // ═════════════════════════════════════════════════════════════════════════
-    //  Construction & registration
-    // ═════════════════════════════════════════════════════════════════════════
 
     public GraveEntity(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
@@ -86,10 +84,6 @@ public class GraveEntity extends Monster {
                 .add(Attributes.FOLLOW_RANGE,     48.0)
                 .add(Attributes.ARMOR,             4.0);
     }
-
-    // ═════════════════════════════════════════════════════════════════════════
-    //  Variant (unchanged from your original)
-    // ═════════════════════════════════════════════════════════════════════════
 
     private int getTypeVariant()              { return this.entityData.get(VARIANT); }
     public  BurryVariant getVariant()         { return BurryVariant.byId(getTypeVariant() & 255); }
@@ -112,10 +106,6 @@ public class GraveEntity extends Monster {
         setVariant(BurryVariant.byId(c.getInt("burryVariant")));
     }
 
-    // ═════════════════════════════════════════════════════════════════════════
-    //  Boss bar
-    // ═════════════════════════════════════════════════════════════════════════
-
     @Override public void startSeenByPlayer(ServerPlayer p) { super.startSeenByPlayer(p); bossEvent.addPlayer(p); }
     @Override public void stopSeenByPlayer(ServerPlayer p)  { super.stopSeenByPlayer(p);  bossEvent.removePlayer(p); }
 
@@ -134,6 +124,21 @@ public class GraveEntity extends Monster {
             deathSandSpawned = true;
             spawnDeathSand();
         }
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.GRAVE_DEATH.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
+        return ModSounds.GRAVE_HURT.get();
+    }
+
+    @Override
+    protected @Nullable SoundEvent getAmbientSound() {
+        return ModSounds.GRAVE_AMBIENT.get();
     }
 
     private void spawnDeathSand() {
@@ -170,13 +175,8 @@ public class GraveEntity extends Monster {
         }
     }
 
-    // ═════════════════════════════════════════════════════════════════════════
-    //  Goal registration
-    // ═════════════════════════════════════════════════════════════════════════
-
     @Override
     protected void registerGoals() {
-        // Movement
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(3, new GraveAttackGoal(this));
         this.goalSelector.addGoal(4, new GraveRepositionGoal(this));
@@ -184,16 +184,11 @@ public class GraveEntity extends Monster {
         this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0f));
         this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
 
-        // Targeting — anything alive that isn't a Grave or Burry
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 0, true, false,
                 e -> (e instanceof Player p &&!p.isCreative() && !p.isSpectator())));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 0, true, false,
                 e -> !(e instanceof GraveEntity) && !(e instanceof BurryEntity)));
     }
-
-    // ═════════════════════════════════════════════════════════════════════════
-    //  Main tick
-    // ═════════════════════════════════════════════════════════════════════════
 
     @Override
     public void tick() {
@@ -204,14 +199,12 @@ public class GraveEntity extends Monster {
             return;
         }
 
-        // Retarget periodically
         retargetTimer++;
         if (retargetTimer >= 200 && currentPhase==AttackPhase.NONE) {
             retargetTimer = 0;
             switchTarget();
         }
 
-        // Phase state machine
         if (currentPhase != AttackPhase.NONE) {
             attackTick++;
             switch (currentPhase) {
@@ -236,11 +229,12 @@ public class GraveEntity extends Monster {
 
         for (int dx = -range; dx <= range; dx++) {
             for (int dy = -1; dy <= (int) getBbHeight() + 2; dy++) {
-                for (int dz = -range; dz <= range; dz++) {
+                for (int dz = -range/2; dz <= range/2; dz++) {
                     BlockPos pos = center.offset(dx, dy, dz);
                     BlockState state = level().getBlockState(pos);
                     if (!state.isAir()
                             && !state.is(BlockTags.WITHER_IMMUNE)
+                            && !state.getCollisionShape(level(), pos).isEmpty()
                             && level().getBlockEntity(pos) == null) {
                         level().destroyBlock(pos, true);
                     }
@@ -248,10 +242,6 @@ public class GraveEntity extends Monster {
             }
         }
     }
-
-    // ═════════════════════════════════════════════════════════════════════════
-    //  Client-side animations
-    // ═════════════════════════════════════════════════════════════════════════
 
     private void animate() {
         AttackPhase phase = AttackPhase.values()[this.entityData.get(ATTACK_PHASE)];
@@ -268,10 +258,6 @@ public class GraveEntity extends Monster {
             }
         }
     }
-
-    // ═════════════════════════════════════════════════════════════════════════
-    //  Attack initiation (called from GraveAttackGoal)
-    // ═════════════════════════════════════════════════════════════════════════
 
     public boolean isAttacking() { return currentPhase != AttackPhase.NONE; }
 
@@ -296,10 +282,6 @@ public class GraveEntity extends Monster {
         }
     }
 
-    // ═════════════════════════════════════════════════════════════════════════
-    //  SPIKE PHASE  (hit animation, 20 ticks = 1 second; spike at tick 10)
-    // ═════════════════════════════════════════════════════════════════════════
-
     private void startSpikePhase() {
         setPhase(AttackPhase.SPIKE);
         attackTick   = 0;
@@ -311,7 +293,6 @@ public class GraveEntity extends Monster {
     private void tickSpikePhase() {
         LivingEntity target = getTarget();
 
-        // Ripple effect: ticks 1-9, radiating out toward target
         if (attackTick == 15 && target != null) {
             spikeTargetPos = target.blockPosition();
         }
@@ -319,7 +300,6 @@ public class GraveEntity extends Monster {
             spawnRippleParticle(attackTick, spikeTargetPos);
         }
 
-        // Spike spawns at midpoint — tick 10
         if (attackTick == 55) {
             BlockPos groundPos = findGround(spikeTargetPos);
             if (groundPos != null) {
@@ -360,10 +340,6 @@ public class GraveEntity extends Monster {
         return null;
     }
 
-    /**
-     * Spawns a particle ring at a fraction t (0→1) of the way between
-     * the boss and the target, creating a ground-ripple feel.
-     */
     private void spawnRippleParticle(int step, BlockPos targetPos) {
         double t = (step-15) / 40.0;
         double px = getX() + (targetPos.getX() - getX()) * t;
@@ -380,14 +356,9 @@ public class GraveEntity extends Monster {
                         px + Math.cos(angle) * radius, py + 0.1, pz + Math.sin(angle) * radius,
                         1, 0, 0, 0, 0.05);
             }
+            sl.playSound(null, ground, BaseModSounds.EARTH_RUMBLE.get(), SoundSource.PLAYERS);
         }
     }
-
-    // ═════════════════════════════════════════════════════════════════════════
-    //  METEOR PHASE  (throw animation, 20 ticks = 1 second)
-    //    tick 5  (0.25s) → spawn meteor above head (starts small, grows)
-    //    tick 13 (0.65s) → throw meteor at target
-    // ═════════════════════════════════════════════════════════════════════════
 
     private void startMeteorPhase() {
         setPhase(AttackPhase.METEOR);
@@ -420,7 +391,6 @@ public class GraveEntity extends Monster {
             System.out.println(target);
             if (chargedMeteor != null && !chargedMeteor.isRemoved()) {
                 if (target != null && distanceToSqr(target) > 8 * 8) {
-                    //chargedMeteor.setNoGravity(false);
                     chargedMeteor.setRadius(2);
                     Vec3 toTarget = target.position()
                             .add(0, target.getBbHeight() * 0.5, 0)
@@ -447,19 +417,14 @@ public class GraveEntity extends Monster {
         chargedMeteor = null;
     }
 
-    // ═════════════════════════════════════════════════════════════════════════
-    //  SUMMON PHASE  (scream animation, ~40 ticks; minions appear at peak)
-    // ═════════════════════════════════════════════════════════════════════════
-
     private void startSummonPhase() {
         setPhase(AttackPhase.SUMMON);
         attackTick   = 0;
     }
 
     private void tickSummonPhase() {
-        // Summon minions midway through scream (tick 20)
         if (attackTick == 20) {
-            int count = 2 + random.nextInt(3); // 2–4 Burrys
+            int count = 2 + random.nextInt(3);
             for (int i = 0; i < count; i++) {
                 double angle  = (Math.PI * 2 / count) * i;
                 double radius = 3.0;
@@ -481,10 +446,6 @@ public class GraveEntity extends Monster {
         if (attackTick >= 40) endPhase();
     }
 
-    // ═════════════════════════════════════════════════════════════════════════
-    //  Helpers
-    // ═════════════════════════════════════════════════════════════════════════
-
     private void endPhase() {
         setPhase(AttackPhase.NONE);
         attackTick    = 0;
@@ -495,7 +456,6 @@ public class GraveEntity extends Monster {
         chargedMeteor = null;
     }
 
-    /** Pick a random nearby living entity that is not a Grave or Burry. */
     private void switchTarget() {
         List<LivingEntity> nearby = level().getEntitiesOfClass(LivingEntity.class,
                 getBoundingBox().inflate(48),
@@ -508,10 +468,6 @@ public class GraveEntity extends Monster {
             setTarget(nearby.get(random.nextInt(nearby.size())));
         }
     }
-
-    // ═════════════════════════════════════════════════════════════════════════
-    //  Inner goal class
-    // ═════════════════════════════════════════════════════════════════════════
 
     private static class GraveAttackGoal extends Goal {
         private final GraveEntity grave;
@@ -541,12 +497,11 @@ public class GraveEntity extends Monster {
 
             grave.getLookControl().setLookAt(target, 30f, 30f);
 
-            if (grave.isAttacking()) return; // mid-animation, do nothing
+            if (grave.isAttacking()) return;
 
             cooldown--;
             if (cooldown <= 0) {
                 grave.beginAttack(target);
-                // cooldown between attacks: 40-80 ticks (2-4 seconds)
                 cooldown = 40 + grave.random.nextInt(40);
             }
         }
@@ -579,7 +534,6 @@ public class GraveEntity extends Monster {
 
         @Override
         public void tick() {
-            // Recalculate every 20 ticks or when we've arrived
             if (grave.tickCount % 20 == 0 || hasArrived()) {
                 recalculate();
             }
@@ -597,7 +551,6 @@ public class GraveEntity extends Monster {
             LivingEntity target = grave.getTarget();
             if (target == null) { moveTarget = null; return; }
 
-            // Gather all threats: the target + any nearby players
             List<LivingEntity> threats = new java.util.ArrayList<>();
             threats.add(target);
             grave.level().getEntitiesOfClass(Player.class,
@@ -605,7 +558,6 @@ public class GraveEntity extends Monster {
                     p -> p != target && !p.isCreative() && !p.isSpectator()
             ).forEach(threats::add);
 
-            // Compute average threat position
             double ax = threats.stream().mapToDouble(Entity::getX).average().orElse(target.getX());
             double az = threats.stream().mapToDouble(Entity::getZ).average().orElse(target.getZ());
 
@@ -613,7 +565,6 @@ public class GraveEntity extends Monster {
             double dist = toThreat.length();
 
             if (dist < 0.001) {
-                // Threat is on top of us — flee in a random direction
                 double angle = grave.random.nextDouble() * Math.PI * 2;
                 toThreat = new Vec3(Math.cos(angle), 0, Math.sin(angle));
                 dist = 1.0;
@@ -623,15 +574,12 @@ public class GraveEntity extends Monster {
             double desiredDist;
 
             if (dist < PREFERRED_MIN) {
-                // Too close — move directly away
                 desiredDist = PREFERRED_MIN + 2.0;
                 moveTarget = grave.position().add(dir.scale(-(desiredDist - dist)));
             } else if (dist > PREFERRED_MAX) {
-                // Too far — close in
                 desiredDist = PREFERRED_MAX - 2.0;
                 moveTarget = grave.position().add(dir.scale(dist - desiredDist));
             } else {
-                // In the sweet spot — strafe sideways slightly so it doesn't stand still
                 Vec3 strafe = new Vec3(-dir.z, 0, dir.x)
                         .scale(grave.random.nextBoolean() ? 3.0 : -3.0);
                 moveTarget = grave.position().add(strafe);

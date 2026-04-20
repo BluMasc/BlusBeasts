@@ -3,6 +3,7 @@ package net.blumasc.blusbeasts.entity.custom;
 import net.blumasc.blubasics.entity.custom.projectile.BlockProjectileEntity;
 import net.blumasc.blusbeasts.entity.ModEntities;
 import net.blumasc.blusbeasts.entity.variants.BurryVariant;
+import net.blumasc.blusbeasts.sound.ModSounds;
 import net.blumasc.blusbeasts.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -10,6 +11,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -104,6 +106,21 @@ public class BurryEntity extends Monster {
                 .add(Attributes.FOLLOW_RANGE, (double)48.0F);
     }
 
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.BURRY_DEATH.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
+        return ModSounds.BURRY_HURT.get();
+    }
+
+    @Override
+    protected @Nullable SoundEvent getAmbientSound() {
+        return ModSounds.BURRY_AMBIENT.get();
+    }
+
     public BurryEntity(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
     }
@@ -141,6 +158,15 @@ public class BurryEntity extends Monster {
         }else{
             if(this.level().canSeeSky(this.blockPosition()) && this.level().isDay()){
                 if(this.tickCount%40==0){
+                    this.hurt(damageSources().inFire(), 1.0f);
+                }
+            }
+            if (this.isInWater()) {
+                if (this.tickCount % 20 == 0) {
+                    this.hurt(damageSources().drown(), 2.0f);
+                }
+            } else if (this.level().isRainingAt(this.blockPosition())) {
+                if (this.tickCount % 40 == 0) {
                     this.hurt(damageSources().inFire(), 1.0f);
                 }
             }

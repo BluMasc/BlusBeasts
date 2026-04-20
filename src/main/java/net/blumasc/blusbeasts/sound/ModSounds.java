@@ -39,6 +39,28 @@ public class ModSounds {
     public static final Supplier<SoundEvent> MIMICART_SNAP = registerSoundEvent("mimicart_snap");
     public static final Supplier<SoundEvent> MIMICART_LICK = registerSoundEvent("mimicart_lick");
     public static final Supplier<SoundEvent> LEACH = registerSoundEvent("leach");
+    public static final Supplier<SoundEvent> BURRY_AMBIENT = registerSoundEvent("burry_ambient");
+    public static final Supplier<SoundEvent> BURRY_DEATH = registerSoundEvent("burry_death");
+    public static final Supplier<SoundEvent> BURRY_HURT = registerSoundEvent("burry_hurt");
+    public static final Supplier<SoundEvent> GRAVE_AMBIENT = registerSoundEvent("grave_ambient");
+    public static final Supplier<SoundEvent> GRAVE_DEATH = registerSoundEvent("grave_death");
+    public static final Supplier<SoundEvent> GRAVE_HURT = registerSoundEvent("grave_hurt");
+    public static final Supplier<SoundEvent> ROOTLING_AMBIENT = registerSoundEvent("rootling_ambient");
+    public static final Supplier<SoundEvent> ROOTLING_DEATH = registerSoundEvent("rootling_death");
+    public static final Supplier<SoundEvent> HEART_EXPLOSION = registerSoundEvent("heart_explosion");
+    public static final Supplier<SoundEvent> MAGIC_WAND_HEAL = registerSoundEvent("magic_wand_heal");
+    public static final Supplier<SoundEvent> PARTY_POPPER = registerSoundEvent("party_popper");
+    public static final Supplier<SoundEvent> PIXIE = registerSoundEvent("pixie");
+    public static final Supplier<SoundEvent> SPARKLE_ALL = registerSoundEvent("sparkle_all");
+    public static final Supplier<SoundEvent> WAND_HEAL_EFFECT = registerSoundEvent("wand_heal_effect");
+    public static final Supplier<SoundEvent> ENDERDRAKE_AMBIENT = registerSoundEvent("enderdrake_ambient");
+    public static final Supplier<SoundEvent> ENDERDRAKE_DEATH = registerSoundEvent("enderdrake_death");
+    public static final Supplier<SoundEvent> ENDERDRAKE_HURT = registerSoundEvent("enderdrake_hurt");
+    public static final Supplier<SoundEvent> ENDERDRAKE_WINGBEAT = registerSoundEvent("enderdrake_wingbeat");
+    public static final Supplier<SoundEvent> DEEPSHOVELER_SHOOT = registerSoundEvent("deepshoveler_shoot");
+    public static final Supplier<SoundEvent> MINERSNACK_DEATH = registerSoundEvent("minersnack_death");
+    public static final Supplier<SoundEvent> MINERSNACK_FLOP = registerSoundEvent("minersnack_flop");
+    public static final Supplier<SoundEvent> MINERSNACK_HURT = registerSoundEvent("minersnack_hurt");
 
     private static Supplier<SoundEvent> registerSoundEvent(String name){
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(BlusBeastsMod.MODID, name);

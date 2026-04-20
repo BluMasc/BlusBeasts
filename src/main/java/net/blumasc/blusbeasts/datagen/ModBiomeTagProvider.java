@@ -36,7 +36,8 @@ public class ModBiomeTagProvider extends BiomeTagsProvider {
                 .add(Biomes.SMALL_END_ISLANDS)
                 .add(Biomes.END_BARRENS);
         tag(ModTags.Biomes.LIVING_LIGHTNING_SPAWNABLE)
-                .addTag(BiomeTags.IS_OVERWORLD);
+                .addTag(BiomeTags.IS_OVERWORLD)
+                .remove(Biomes.MUSHROOM_FIELDS);
         tag(ModTags.Biomes.MYCELIUM_TOAD_SPAWNABLE)
                 .add(Biomes.MUSHROOM_FIELDS);
         tag(ModTags.Biomes.MYCELIUM_TOAD_SPAWNABLE_RARE)
@@ -59,7 +60,8 @@ public class ModBiomeTagProvider extends BiomeTagsProvider {
         tag(ModTags.Biomes.RED_BURRY_BIOMES)
                 .addTag(BiomeTags.IS_BADLANDS);
         tag(ModTags.Biomes.DEEPSHOVELER_BIOMES)
-                .addTag(BiomeTags.IS_OVERWORLD);
+                .addTag(BiomeTags.IS_OVERWORLD)
+                .remove(Biomes.MUSHROOM_FIELDS);
         tag(ModTags.Biomes.MINERS_SNACK_BIOMES)
                 .addTag(BiomeTags.IS_OVERWORLD);
         tag(ModTags.Biomes.BLUEBELLS_BIOMES)

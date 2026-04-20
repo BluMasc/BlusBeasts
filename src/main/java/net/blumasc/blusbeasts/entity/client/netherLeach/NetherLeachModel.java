@@ -57,7 +57,6 @@ public class NetherLeachModel<T extends NetherLeachEntity> extends HierarchicalM
     @Override
     public void setupAnim(NetherLeachEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
-        this.applyHeadRotation(netHeadYaw,headPitch);
         this.animate(entity.idleAnimationState, NetherLeachAnimation.idle, ageInTicks, 1f);
         this.animate(entity.suckingAnimationState, NetherLeachAnimation.sucking, ageInTicks, 1f);
         this.animateWalk(NetherLeachAnimation.walking, limbSwing, limbSwingAmount, 1f, 1f);
@@ -66,14 +65,6 @@ public class NetherLeachModel<T extends NetherLeachEntity> extends HierarchicalM
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
         body.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
-    }
-
-    private void applyHeadRotation(float headYaw, float headPitch) {
-        headYaw = Mth.clamp(headYaw, -30f, 30f);
-        headPitch = Mth.clamp(headPitch, -25f, 45);
-
-        this.head.yRot = headYaw * ((float)Math.PI / 180f);
-        this.head.xRot = headPitch *  ((float)Math.PI / 180f);
     }
 
     @Override

@@ -5,6 +5,7 @@ import net.blumasc.blusbeasts.block.ModBlocks;
 import net.blumasc.blusbeasts.entity.ModEntities;
 import net.blumasc.blusbeasts.entity.custom.projectile.DarknessBlobEntity;
 import net.blumasc.blusbeasts.entity.variants.DeepshovelerVariant;
+import net.blumasc.blusbeasts.sound.ModSounds;
 import net.minecraft.client.particle.BreakingItemParticle;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,6 +20,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
@@ -277,7 +279,7 @@ public class DeepshovelerEntity extends Monster {
                 1.2F,
                 0
         );
-
+        level().playSound(null, getX(), getY(), getZ(), ModSounds.DEEPSHOVELER_SHOOT.get(), SoundSource.PLAYERS, 1.0f, 0.8f+getRandom().nextFloat()*0.4f);
         level().addFreshEntity(projectile);
     }
 

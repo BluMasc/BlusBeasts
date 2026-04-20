@@ -7,5 +7,5 @@ import net.minecraft.world.food.FoodProperties;
 
 public class ModFoodProperties {
     public static final FoodProperties LUNAR_TAKOYAKI = new FoodProperties.Builder().nutrition(4).saturationModifier(0.2f).fast().build();
-    public static final FoodProperties COOKED_MINERS_SNACK = new FoodProperties.Builder().nutrition(5).saturationModifier(3.0f).build();
+    public static final FoodProperties COOKED_MINERS_SNACK = new FoodProperties.Builder().nutrition(5).saturationModifier(0.7f).build();
 }

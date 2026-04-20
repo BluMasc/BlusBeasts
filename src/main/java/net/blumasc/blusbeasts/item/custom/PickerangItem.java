@@ -46,6 +46,7 @@ public class PickerangItem extends PickaxeItem {
                     1.0F,
                     player.getRandom().nextFloat() + 0.5f
             );
+            player.resetAttackStrengthTicker();
         }
 
         return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
@@ -53,7 +54,6 @@ public class PickerangItem extends PickaxeItem {
 
     @Override
     public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
-        System.out.println("Repair check triggered");
         return repair.is(ModItems.BURROW_GEM.get());
     }
 }

@@ -2,9 +2,11 @@ package net.blumasc.blusbeasts.block.custom.blockentity.custom;
 
 import net.blumasc.blusbeasts.block.custom.blockentity.ModBlockEntities;
 import net.blumasc.blusbeasts.particle.ModParticles;
+import net.blumasc.blusbeasts.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -51,6 +53,9 @@ public class FairyFireBlockEntity extends BlockEntity {
             entity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 4, 0, false, false));
         }
         lifetime--;
+        if(lifetime%20==0 && level.random.nextFloat()<0.3){
+            level.playSound(null, blockPos, ModSounds.SPARKLE_ALL.get(), SoundSource.PLAYERS, 0.7f, 0.8f+level.random.nextFloat()*0.4f);
+        }
         if (lifetime <= 0) {
             level.removeBlock(blockPos, false);
         }

@@ -56,7 +56,7 @@ public class AmthystCrabEntity extends GemCrabEntity{
         if(!(this.entityData.get(GEM)>=100))return;
         this.entityData.set(GEM, 0);
         Item i = Items.AMETHYST_SHARD;
-        if(this.random.nextFloat()<0.3){
+        if(this.random.nextFloat()<0.05){
             i = ModItems.EMBEDDED_CRYSTALS.get();
         }
         ItemEntity itementity = this.spawnAtLocation(i, 1);

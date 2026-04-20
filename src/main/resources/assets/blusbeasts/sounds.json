@@ -161,5 +161,158 @@
     "sounds": [
       "blusbeasts:mimicart/mimicart_snap"
     ]
+  },
+  "burry_ambient":{
+    "subtitle": "sound.blusbeasts.burry_ambient",
+    "sounds": [
+      "blusbeasts:burry/burry_ambient"
+    ]
+  },
+  "burry_death":{
+    "subtitle": "sound.blusbeasts.burry_death",
+    "sounds": [
+      "blusbeasts:burry/burry_death"
+    ]
+  },
+  "burry_hurt":{
+    "subtitle": "sound.blusbeasts.burry_hurt",
+    "sounds": [
+      "blusbeasts:burry/burry_hurt"
+    ]
+  },
+  "grave_ambient":{
+    "subtitle": "sound.blusbeasts.grave_ambient",
+    "sounds": [
+      "blusbeasts:grave/grave_ambient"
+    ]
+  },
+  "grave_death":{
+    "subtitle": "sound.blusbeasts.grave_death",
+    "sounds": [
+      "blusbeasts:grave/grave_death"
+    ]
+  },
+  "grave_hurt":{
+    "subtitle": "sound.blusbeasts.grave_hurt",
+    "sounds": [
+      "blusbeasts:grave/grave_hurt"
+    ]
+  },
+  "rootling_ambient":{
+    "subtitle": "sound.blusbeasts.rootling_ambient",
+    "sounds": [
+      "blusbeasts:rootling/rootling_ambient"
+    ]
+  },
+  "rootling_death":{
+    "subtitle": "sound.blusbeasts.rootling_death",
+    "sounds": [
+      "blusbeasts:rootling/rootling_death"
+    ]
+  },
+  "heart_explosion":{
+    "subtitle": "sound.blusbeasts.heart_explosion",
+    "sounds": [
+      "blusbeasts:pixie/heart_explosion"
+    ]
+  },
+  "magic_wand_heal":{
+    "subtitle": "sound.blusbeasts.magic_wand_heal",
+    "sounds": [
+      "blusbeasts:pixie/magic_wand_heal"
+    ]
+  },
+  "party_popper":{
+    "subtitle": "sound.blusbeasts.party_popper",
+    "sounds": [
+      "blusbeasts:pixie/party_popper"
+    ]
+  },
+  "pixie":{
+    "subtitle": "sound.blusbeasts.pixie",
+    "sounds": [
+      "blusbeasts:pixie/pixie"
+    ]
+  },
+  "sparkle_all":{
+    "subtitle": "sound.blusbeasts.sparkle_all",
+    "sounds": [
+      "blusbeasts:pixie/sparkle_all"
+    ]
+  },
+  "wand_heal_effect":{
+    "subtitle": "sound.blusbeasts.wand_heal_effect",
+    "sounds": [
+      "blusbeasts:pixie/wand_heal_effect"
+    ]
+  },
+  "enderdrake_ambient":{
+    "subtitle": "sound.blusbeasts.enderdrake_ambient",
+    "sounds": [
+      "blusbeasts:enderdrake/enderdrake_ambient"
+    ]
+  },
+  "enderdrake_death":{
+    "subtitle": "sound.blusbeasts.enderdrake_death",
+    "sounds": [
+      "blusbeasts:enderdrake/enderdrake_death"
+    ]
+  },
+  "enderdrake_hurt":{
+    "subtitle": "sound.blusbeasts.enderdrake_hurt",
+    "sounds": [
+      "blusbeasts:enderdrake/enderdrake_hurt"
+    ]
+  },
+  "enderdrake_wingbeat":{
+    "subtitle": "sound.blusbeasts.enderdrake_wingbeat",
+    "sounds": [
+      "blusbeasts:enderdrake/enderdrake_wingbeat"
+    ]
+  },
+  "deepshoveler_shoot":{
+    "subtitle": "sound.blusbeasts.deepshoveler_shoot",
+    "sounds": [
+      "blusbeasts:deepshoveler/deepshoveler_shoot"
+    ]
+  },
+  "minersnack_death": {
+    "sounds": [
+      "entity/fish/hurt1",
+      "entity/fish/hurt2",
+      "entity/fish/hurt3",
+      "entity/fish/hurt4"
+    ],
+    "subtitle": "sound.blusbeasts.minersnack_death"
+  },
+  "minersnack_flop": {
+    "sounds": [
+      {
+        "name": "entity/fish/flop1",
+        "volume": 0.3
+      },
+      {
+        "name": "entity/fish/flop2",
+        "volume": 0.3
+      },
+      {
+        "name": "entity/fish/flop3",
+        "volume": 0.3
+      },
+      {
+        "name": "entity/fish/flop4",
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "sound.blusbeasts.minersnack_flop"
+  },
+  "minersnack_hurt": {
+    "sounds": [
+      "entity/fish/hurt1",
+      "entity/fish/hurt2",
+      "entity/fish/hurt3",
+      "entity/fish/hurt4"
+    ],
+    "subtitle": "sound.blusbeasts.minersnack_hurt"
   }
 }

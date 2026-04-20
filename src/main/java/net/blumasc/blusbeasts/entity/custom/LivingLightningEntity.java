@@ -5,6 +5,7 @@ import net.blumasc.blubasics.item.custom.LightningInABottleItem;
 import net.blumasc.blubasics.sound.BaseModSounds;
 import net.blumasc.blusbeasts.item.ModItems;
 import net.blumasc.blusbeasts.sound.ModSounds;
+import net.blumasc.blusbeasts.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -214,19 +215,15 @@ public class LivingLightningEntity extends Monster implements FlyingAnimal {
         if (!(level() instanceof ServerLevel server)) return;
 
         LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(level());
+        if (bolt == null) return;
+
+        int ticks = target.getRemainingFireTicks();
+
         bolt.moveTo(target.position());
         bolt.setDamage(0);
 
-        if (target instanceof Pig pig) {
-            pig.convertTo(EntityType.ZOMBIFIED_PIGLIN, true);
-        }
-        else if (target instanceof Villager villager) {
-            villager.convertTo(EntityType.WITCH, false);
-        }
-        else if (target instanceof Creeper creeper && !creeper.isPowered()) {
-            creeper.thunderHit(server, bolt);
-            creeper.setRemainingFireTicks(0);
-        }
+        target.thunderHit(server, bolt);
+        target.setRemainingFireTicks(ticks);
     }
 
     private void setupClientAnimation() {
@@ -338,7 +335,7 @@ public class LivingLightningEntity extends Monster implements FlyingAnimal {
             List<LivingEntity> list = entity.level().getEntitiesOfClass(
                     LivingEntity.class,
                     entity.getBoundingBox().inflate(12),
-                    e -> e instanceof Pig || (e instanceof Creeper c && !c.isPowered())
+                    e -> e.getType().is(ModTags.EntityTypes.LIGHTNING_TARGETS) || (e instanceof Creeper c && !c.isPowered())
             );
 
             target = list.stream()

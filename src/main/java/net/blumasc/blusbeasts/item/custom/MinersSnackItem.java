@@ -53,9 +53,9 @@ public class MinersSnackItem extends FishBoneSkewerFoodItem{
 
         CompoundTag tag = data.copyTag();
 
-        int hunger = tag.getInt("hunger");
+        int hunger = tag.getInt("hunger")+1;
         int saturation = tag.getInt("saturation");
-        return new FoodProperties.Builder().nutrition(hunger+1).saturationModifier(saturation/10.0f).build();
+        return new FoodProperties.Builder().nutrition(hunger).saturationModifier(((float) saturation) /hunger).build();
     }
 
     @Override
@@ -70,10 +70,10 @@ public class MinersSnackItem extends FishBoneSkewerFoodItem{
 
         CompoundTag tag = data.copyTag();
 
-        int hunger = tag.getInt("hunger");
+        int hunger = tag.getInt("hunger")+1;
         int saturation = tag.getInt("saturation");
 
-        player.getFoodData().eat(hunger+1, saturation/10.0f);
+        player.getFoodData().eat(hunger, ((float) saturation) /hunger);
 
         if (tag.contains("effectTop")) {
             MobEffect effect = BuiltInRegistries.MOB_EFFECT.get(
