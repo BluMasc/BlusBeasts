@@ -52,7 +52,7 @@ public class MagicWandItem extends Item {
                         12, 0.3, 0.3, 0.3, 0.05
                 );
 
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.MAGIC_WAND_HEAL.get(), SoundSource.PLAYERS, 1.0f, 0.8f+player.getRandom().nextFloat()*0.4f);
+                level.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.WAND_HEAL_EFFECT.get(), SoundSource.PLAYERS, 1.0f, 0.8f+player.getRandom().nextFloat()*0.4f);
                 stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
                 player.getCooldowns().addCooldown(this, 20*20);
             }

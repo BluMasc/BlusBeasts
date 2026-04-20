@@ -74,7 +74,7 @@ public class HeartProjectileEntity extends AbstractHurtingProjectile {
         c.setRadius(2.5f);
         c.setOwner(this.getLivingOwner());
         c.setDuration(100);
-        c.addEffect(new MobEffectInstance(MobEffects.HEAL));
+        c.addEffect(new MobEffectInstance(MobEffects.REGENERATION));
         level().playSound(null, getX(), getY(), getZ(), ModSounds.HEART_EXPLOSION.get(), SoundSource.PLAYERS, 1.0f, 0.8f+getRandom().nextFloat()*0.4f);
         this.level().addFreshEntity(c);
         this.discard();
@@ -95,13 +95,13 @@ public class HeartProjectileEntity extends AbstractHurtingProjectile {
             );
         }
         if(e instanceof LivingEntity le){
-            le.addEffect(new MobEffectInstance(MobEffects.HEAL, 20, 2));
+            le.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 20, 2));
         }else{
             AreaEffectCloud c = new AreaEffectCloud(this.level(), e.getX(), e.getY(), e.getZ());
             c.setRadius(2.5f);
             c.setOwner(this.getLivingOwner());
             c.setDuration(100);
-            c.addEffect(new MobEffectInstance(MobEffects.HEAL));
+            c.addEffect(new MobEffectInstance(MobEffects.REGENERATION));
             this.level().addFreshEntity(c);
         }
         level().playSound(null, getX(), getY(), getZ(), ModSounds.HEART_EXPLOSION.get(), SoundSource.PLAYERS, 1.0f, 0.8f+getRandom().nextFloat()*0.4f);
