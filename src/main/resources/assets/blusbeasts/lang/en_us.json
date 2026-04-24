@@ -247,6 +247,8 @@
   "blusbeasts.configuration.spawnrootling.tooltip": "If true, Rootlings spawn when Plant Items despawn. ",
   "blusbeasts.configuration.prayfinderdayrequirement": "Prayfinder Day Requirement",
   "blusbeasts.configuration.prayfinderdayrequirement.tooltip": "The number of days that prayfinders can't spawn after world creation. ",
+  "blusbeasts.configuration.effects_miner_blacklist": "Miner's Snack Blacklist",
+  "blusbeasts.configuration.effects_miner_blacklist.tooltip": "Effects that Miner's Snacks can't spawn with. ",
 
   "item.blusbeasts.donut.flavour_1": "Açaí",
   "item.blusbeasts.donut.flavour_2": "Acerola",

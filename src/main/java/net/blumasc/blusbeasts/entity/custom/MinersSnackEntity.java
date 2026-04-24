@@ -1,5 +1,6 @@
 package net.blumasc.blusbeasts.entity.custom;
 
+import net.blumasc.blusbeasts.Config;
 import net.blumasc.blusbeasts.item.ModItems;
 import net.blumasc.blusbeasts.sound.ModSounds;
 import net.minecraft.core.BlockPos;
@@ -235,9 +236,15 @@ public class MinersSnackEntity extends AbstractSchoolingFish {
     }
 
     public static List<MobEffect> getEffectsWithRegisteredPotion() {
+        List<String> blacklist = (List<String>) Config.EFFECT_STRINGS_MINER_BLACKLIST.get();
+
         return BuiltInRegistries.POTION.stream()
                 .flatMap(potion -> potion.getEffects().stream())
                 .map(effectInstance -> effectInstance.getEffect().value())
+                .filter(effect -> {
+                    var key = BuiltInRegistries.MOB_EFFECT.getKey(effect).toString();
+                    return !blacklist.contains(key);
+                })
                 .distinct()
                 .toList();
     }

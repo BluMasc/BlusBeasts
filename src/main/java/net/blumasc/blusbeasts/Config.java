@@ -32,6 +32,20 @@ public class Config {
             .comment("After what number of days should prayfinders spawn?")
             .define("prayfinderdayrequirement", 10);
 
+    public static final ModConfigSpec.ConfigValue<List<? extends String>> EFFECT_STRINGS_MINER_BLACKLIST = BUILDER
+            .comment("A list of effects blacklisted from miners snacks.")
+            .defineListAllowEmpty("effects_miner_blacklist",
+                    List.of("minecraft:instant_health", "minecraft:instant_damage"),
+                    () -> "",
+                    Config::validateEffect);
+
     static final ModConfigSpec SPEC = BUILDER.build();
+
+    private static boolean validateEffect(Object obj) {
+        if (!(obj instanceof String s)) return false;
+
+
+        return BuiltInRegistries.MOB_EFFECT.containsKey(ResourceLocation.parse(s));
+    }
 
 }
