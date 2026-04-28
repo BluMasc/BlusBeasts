@@ -56,6 +56,7 @@ public class ModLootTables implements LootTableSubProvider {
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
                                 .setRolls(UniformGenerator.between(2.0F, 3.0F))
+                                .add(LootItem.lootTableItem(ModItems.FAIRY_DUST).setWeight(50))
                                 .add(NestedLootTable.lootTableReference(BuiltInLootTables.SIMPLE_DUNGEON)
                                         .setWeight(70))
                                 .add(NestedLootTable.lootTableReference(BuiltInLootTables.STRONGHOLD_CORRIDOR)

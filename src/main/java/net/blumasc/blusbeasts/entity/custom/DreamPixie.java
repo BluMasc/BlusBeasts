@@ -215,7 +215,6 @@ public class DreamPixie extends PathfinderMob implements FlyingAnimal {
         }
 
         private ItemStack generateReward(net.minecraft.server.level.ServerLevel level) {
-            if (level.random.nextFloat() < 0.70f) {
                 LootTable table = level().getServer()
                         .reloadableRegistries()
                         .getLootTable(ModLootTables.PIXIE_LOOT_TABLE);
@@ -226,12 +225,10 @@ public class DreamPixie extends PathfinderMob implements FlyingAnimal {
 
                 List<ItemStack> items = table.getRandomItems(params).stream()
                         .filter(stack -> !stack.has(DataComponents.FOOD))
-                        .collect(java.util.stream.Collectors.toList());;
-
+                        .collect(java.util.stream.Collectors.toList());
                 if (!items.isEmpty()) {
                     return items.get(level.random.nextInt(items.size()));
                 }
-            }
 
             return new ItemStack(ModItems.FAIRY_DUST.get());
         }

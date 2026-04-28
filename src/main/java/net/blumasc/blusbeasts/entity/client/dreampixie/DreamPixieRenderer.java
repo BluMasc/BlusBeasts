@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class DreamPixieRenderer extends MobRenderer<DreamPixie, DreamPixieModel<DreamPixie>> {
     public DreamPixieRenderer(EntityRendererProvider.Context context) {
-        super(context, new DreamPixieModel<>(context.bakeLayer(DreamPixieModel.LAYER_LOCATION)), 0.0f);
+        super(context, new DreamPixieModel<>(context.bakeLayer(DreamPixieModel.LAYER_LOCATION)), 0.1f);
     }
 
     @Override
