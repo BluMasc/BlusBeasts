@@ -234,6 +234,12 @@
       "blusbeasts:pixie/pixie"
     ]
   },
+  "pixie_scream":{
+    "subtitle": "sound.blusbeasts.pixie_scream",
+    "sounds": [
+      "blusbeasts:pixie/pixie_scream"
+    ]
+  },
   "sparkle_all":{
     "subtitle": "sound.blusbeasts.sparkle_all",
     "sounds": [

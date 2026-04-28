@@ -51,6 +51,7 @@ public class ModSounds {
     public static final Supplier<SoundEvent> MAGIC_WAND_HEAL = registerSoundEvent("magic_wand_heal");
     public static final Supplier<SoundEvent> PARTY_POPPER = registerSoundEvent("party_popper");
     public static final Supplier<SoundEvent> PIXIE = registerSoundEvent("pixie");
+    public static final Supplier<SoundEvent> PIXIE_SCREAM = registerSoundEvent("pixie_scream");
     public static final Supplier<SoundEvent> SPARKLE_ALL = registerSoundEvent("sparkle_all");
     public static final Supplier<SoundEvent> WAND_HEAL_EFFECT = registerSoundEvent("wand_heal_effect");
     public static final Supplier<SoundEvent> ENDERDRAKE_AMBIENT = registerSoundEvent("enderdrake_ambient");

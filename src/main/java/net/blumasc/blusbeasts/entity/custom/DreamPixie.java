@@ -60,7 +60,7 @@ public class DreamPixie extends PathfinderMob implements FlyingAnimal {
 
     @Override
     protected @Nullable SoundEvent getAmbientSound() {
-        return ModSounds.PIXIE.get();
+        return getPanicing()>0?null:ModSounds.PIXIE.get();
     }
 
     @Override
@@ -215,11 +215,10 @@ public class DreamPixie extends PathfinderMob implements FlyingAnimal {
         }
 
         private ItemStack generateReward(net.minecraft.server.level.ServerLevel level) {
-            List<ResourceKey> lootTables = List.of(BuiltInLootTables.SIMPLE_DUNGEON, BuiltInLootTables.STRONGHOLD_CROSSING,BuiltInLootTables.STRONGHOLD_CORRIDOR, BuiltInLootTables.DESERT_PYRAMID, BuiltInLootTables.JUNGLE_TEMPLE);
             if (level.random.nextFloat() < 0.70f) {
                 LootTable table = level().getServer()
                         .reloadableRegistries()
-                        .getLootTable(lootTables.get(random.nextInt(lootTables.size())));
+                        .getLootTable(ModLootTables.PIXIE_LOOT_TABLE);
 
                 LootParams params = new LootParams.Builder((ServerLevel) level())
                         .withParameter(LootContextParams.ORIGIN, pixie.position())
@@ -313,6 +312,7 @@ public class DreamPixie extends PathfinderMob implements FlyingAnimal {
         @Override
         public void start() {
             pixie.setPanicing(1);
+            pixie.level().playSound(null, pixie.getX(), pixie.getY(), pixie.getZ(), ModSounds.PIXIE_SCREAM.get(), SoundSource.NEUTRAL);
         }
 
         @Override
