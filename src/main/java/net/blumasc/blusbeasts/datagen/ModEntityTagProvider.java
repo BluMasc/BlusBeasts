@@ -28,7 +28,7 @@ public class ModEntityTagProvider extends EntityTypeTagsProvider {
                 .add(EntityType.HUSK);
         tag(ModTags.EntityTypes.IGNORES_PHEROMONES)
                 .add(ModEntities.PRAYFINDER.get())
-                .add(EntityType.WITHER);
+                .addTag(Tags.EntityTypes.BOSSES);
         tag(ModTags.EntityTypes.LIGHTNING_TARGETS)
                 .add(EntityType.PIG);
         tag(ModTags.EntityTypes.INFESTATION_MOBS)
@@ -38,6 +38,7 @@ public class ModEntityTagProvider extends EntityTypeTagsProvider {
                 .add(EntityType.BEE);
         tag(EntityTypeTags.ARTHROPOD)
                 .add(ModEntities.ECHO_CRAB.get())
+                .add(ModEntities.AMETHYST_CRAB.get())
                 .add(ModEntities.NETHER_LEACH.get());
         tag(EntityTypeTags.FALL_DAMAGE_IMMUNE)
                 .add(ModEntities.END_SQUID.get())
@@ -47,11 +48,14 @@ public class ModEntityTagProvider extends EntityTypeTagsProvider {
                 .add(ModEntities.SALAMANDER.get());
         tag(EntityTypeTags.SENSITIVE_TO_BANE_OF_ARTHROPODS)
                 .add(ModEntities.ECHO_CRAB.get())
+                .add(ModEntities.AMETHYST_CRAB.get())
                 .add(ModEntities.NETHER_LEACH.get());
         tag(EntityTypeTags.AQUATIC)
-                .add(ModEntities.MYCELIUM_TOAD.get());
+                .add(ModEntities.MYCELIUM_TOAD.get())
+                .add(ModEntities.MINER_SNACK.get());
         tag(EntityTypeTags.SENSITIVE_TO_IMPALING)
-                .add(ModEntities.MYCELIUM_TOAD.get());
+                .add(ModEntities.MYCELIUM_TOAD.get())
+                .add(ModEntities.MINER_SNACK.get());
         tag(EntityTypeTags.IMMUNE_TO_INFESTED)
                 .add(ModEntities.NETHER_LEACH.get());
         tag(EntityTypeTags.ARROWS)

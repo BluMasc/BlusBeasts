@@ -87,11 +87,11 @@ public class EndWyvernPlayerLayer extends RenderLayer<AbstractClientPlayer, Play
                 ageInTicks, 0, 0);
 
         VertexConsumer vertex =
-                buffer.getBuffer(RenderType.entityCutout(ResourceLocation.fromNamespaceAndPath(BlusBeastsMod.MODID, "textures/entity/ender_wyvern/texture.png")));;
+                buffer.getBuffer(RenderType.entityCutoutNoCull(ResourceLocation.fromNamespaceAndPath(BlusBeastsMod.MODID, "textures/entity/ender_wyvern/texture.png")));;
 
         model.renderToBuffer(poseStack, vertex,
                 packedLight, OverlayTexture.NO_OVERLAY,
-                0xFFFFFF);
+                -1);
 
         eyeLayer.render(poseStack, buffer, packedLight,
                 dummyWyvern, limbSwing, limbSwingAmount,
