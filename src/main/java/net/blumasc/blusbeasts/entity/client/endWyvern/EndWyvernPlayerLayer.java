@@ -61,6 +61,10 @@ public class EndWyvernPlayerLayer extends RenderLayer<AbstractClientPlayer, Play
                        float netHeadYaw,
                        float headPitch) {
 
+        if(ClientWyvernData.hasDragon == null){
+            return;
+        }
+
         if(!ClientWyvernData.hasDragon.get(player.getUUID())){
             return;
         }
