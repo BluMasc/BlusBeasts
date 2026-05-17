@@ -65,7 +65,7 @@ public class EndWyvernPlayerLayer extends RenderLayer<AbstractClientPlayer, Play
             return;
         }
 
-        if(!ClientWyvernData.hasDragon.get(player.getUUID())){
+        if(!ClientWyvernData.hasDragon.getOrDefault(player.getUUID(), false)){
             return;
         }
 
