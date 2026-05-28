@@ -1,15 +1,10 @@
 {
   "type": "justenoughbreeding:breeding",
-  "mod": "selectivepowers",
-  "mobs": [
-    {
-      "packwing": {
+  "mod": "blusbeasts",
+  "input_entity":"blusbeasts:packwing",
         "inputs": [
           {
-            "tag": "selectivepowers:packwing_breeding_item"
+            "tag": "blusbeasts:packwing_breeding_item"
           }
         ]
-      }
-    }
-  ]
 }

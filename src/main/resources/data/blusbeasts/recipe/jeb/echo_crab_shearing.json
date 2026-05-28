@@ -1,0 +1,22 @@
+{
+  "type": "justenoughbreeding:transformation",
+  "mod": "blusbeasts",
+  "inputs": [
+    {
+      "item": "minecraft:shears"
+    }
+  ],
+  "input_entity": "blusbeasts:echo_crab",
+  "input_spawn_eggs": [
+    {
+      "item": "blusbeasts:echo_crab_spawn_egg"
+    }
+  ],
+  "output_entity": "blusbeasts:echo_crab",
+  "output_entity_nbt": {},
+  "output_spawn_eggs": [
+    {
+      "item": "blusbeasts:echo_crab_spawn_egg"
+    }
+  ]
+}

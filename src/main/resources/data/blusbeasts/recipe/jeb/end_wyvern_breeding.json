@@ -1,0 +1,15 @@
+{
+  "type": "justenoughbreeding:breeding",
+  "mod": "blusbeasts",
+  "input_entity":"blusbeasts:end_wyvern",
+        "inputs": [
+          {
+            "tag": "blusbeasts:end_wyvern_food"
+          }
+        ],
+  "outputs": [
+    {
+      "item": "blusbeasts:end_wyvern_egg"
+    }
+  ]
+}

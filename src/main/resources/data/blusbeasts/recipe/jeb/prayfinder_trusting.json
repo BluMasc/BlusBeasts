@@ -1,0 +1,10 @@
+{
+  "type": "justenoughbreeding:trusting",
+  "mod": "blusbeasts",
+  "input_entity":"blusbeasts:prayfinder",
+        "inputs": [
+          {
+            "tag": "blusbeasts:prayfinder_liked_attire"
+          }
+        ]
+}

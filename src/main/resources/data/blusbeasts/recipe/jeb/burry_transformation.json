@@ -1,0 +1,18 @@
+{
+  "type": "justenoughbreeding:transformation",
+  "mod": "blusbeasts",
+  "inputs": [
+    {
+      "item": "blubeasts:scarab_dormant"
+    }
+  ],
+  "input_entity": "blusbeasts:burry",
+  "input_spawn_eggs": [
+    {
+      "item": "blusbeasts:burry_spawn_egg"
+    }
+  ],
+  "output_entity": "blusbeasts:grave",
+  "output_entity_nbt": {},
+  "output_spawn_eggs": []
+}

@@ -1,0 +1,22 @@
+{
+  "type": "justenoughbreeding:transformation",
+  "mod": "blusbeasts",
+  "inputs": [
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
+  "input_entity": "blusbeasts:living_lightning",
+  "input_spawn_eggs": [
+    {
+      "item": "blusbeasts:living_lightning_spawn_egg"
+    }
+  ],
+  "output_entity": "blusbeasts:living_lightning",
+  "output_entity_nbt": {},
+  "output_spawn_eggs": [
+    {
+      "item": "blusbeasts:living_lightning_spawn_egg"
+    }
+  ]
+}

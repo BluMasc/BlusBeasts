@@ -1,0 +1,11 @@
+{
+  "type": "justenoughbreeding:taming",
+  "mod": "blusbeasts",
+  "input_entity":"blusbeasts:prayfinder",
+        "inputs": [
+          {
+            "tag": "blusbeasts:prayfinder_food"
+          }
+        ],
+  "trusting": true
+}
